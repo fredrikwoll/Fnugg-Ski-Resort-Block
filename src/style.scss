@@ -1,0 +1,105 @@
+$colorBlack: #232323;
+
+.resort-block-container {
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  .resort-block-inner {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: block;
+    margin-top: 1.25rem;
+    padding: 1.1rem 1.1rem 0.9rem;
+    border-radius: 1.25rem;
+    text-align: center;
+    h3 {
+      margin: 0.5rem auto 1rem;
+      line-height: 1;
+      .resort-input {
+        font-size: 30px !important;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.4) !important;
+      }
+      ul {
+        list-style: none;
+        background: #999;
+        font-size: 1rem;
+        width: 50%;
+        margin: 0 auto;
+        padding: 0;
+        li {
+          line-height: 1.5;
+          margin-bottom: 1px;
+          border-bottom: 1px solid $colorBlack;
+          padding: 1px 2px;
+          display: block;
+          &:hover {
+            background: $colorBlack;
+            color: #fff;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .resort-block-temp {
+      font-size: 8rem;
+      width: 100%;
+      margin-left: 0.5rem;
+      &::after {
+        content: "\00B0";
+      }
+    }
+
+    .resort-block-wrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+      margin: 0.5rem 2rem;
+      .resort-column-expand {
+        grid-column: span 2;
+      }
+      :not(.resort-column-expand) {
+        @media screen and (max-width: 500px) {
+          grid-column: span 2;
+        }
+      }
+    }
+
+    .resort-icon {
+      width: 100%;
+      padding: 18px;
+      text-align: center;
+      font-size: 1.8rem;
+      line-height: 1;
+      position: relative;
+      figure {
+        margin: 0 auto 10px;
+        width: 80px;
+        &.resort-icon-adj {
+          margin: 0 30px 10px 30px;
+        }
+        img {
+          color: $colorBlack;
+        }
+      }
+      .resort-icon-text {
+        position: absolute;
+        right: 0px;
+        top: 20px;
+        font-size: 40px;
+        line-height: 92px;
+        font-weight: bold;
+        span {
+          font-size: 2rem;
+          margin-left: -5px;
+        }
+      }
+    }
+
+    .resort-block-footer {
+      font-size: 1.4rem;
+      color: $colorBlack;
+    }
+  }
+}
