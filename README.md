@@ -2,6 +2,6 @@
 
 ## Installation
 
-1 `yarn install & build`
+1 `yarn install`
 
-2 `yarn build & build`
+2 `yarn build`
