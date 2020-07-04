@@ -10,12 +10,12 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  **/
-
+namespace Fnugg_Ski_Resort;
 
 defined( 'ABSPATH' ) || exit;
 
 
-function fnugg_ski_resort_register_block() {
+function register_block() {
  
     // automatically load dependencies and version
     $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
@@ -32,10 +32,10 @@ function fnugg_ski_resort_register_block() {
     ) );
  
 }
-add_action( 'init', 'fnugg_ski_resort_register_block' );
+add_action( 'init', __NAMESPACE__ .'\\register_block' );
 
 
-function fnugg_ski_resort_register_frontend() {
+function register_frontend() {
  
     // automatically load dependencies and version
     $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/frontend.asset.php');
@@ -48,11 +48,11 @@ function fnugg_ski_resort_register_frontend() {
     );
  
 }
-add_action( 'wp_enqueue_scripts', 'fnugg_ski_resort_register_frontend' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ .'\\register_frontend' );
 
-add_action('enqueue_block_assets', 'fnugg_ski_resort_enqueue_style');
+add_action('enqueue_block_assets', __NAMESPACE__ .'\\enqueue_style');
 
-function fnugg_ski_resort_enqueue_style(){
+function enqueue_style(){
     $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/frontend.asset.php');
 
     wp_enqueue_style(
@@ -68,7 +68,7 @@ function fnugg_ski_resort_enqueue_style(){
  *
  * @param WP_REST_Request $request This function accepts a rest request to process data.
  */
-function fnugg_query_resorts( $request ) {
+function query_resorts( $request ) {
     // In practice this function would fetch the desired data. Here we are just making stuff up.
     $parms = $request->get_params();
     $endpoint = 'https://api.fnugg.no/search/?q='.$parms['q'];
@@ -85,17 +85,17 @@ function fnugg_query_resorts( $request ) {
 /**
  * This function is where we register our routes for our example endpoint.
  */
-function prefix_register_product_routes() {
+function resort_routes() {
 
     register_rest_route( 'fnugg/v1', '/resorts', array(
         array(
             // By using this constant we ensure that when the WP_REST_Server changes, our readable endpoints will work as intended.
-            'methods'  => WP_REST_Server::READABLE,
+            'methods'  => \WP_REST_Server::READABLE,
             // Here we register our callback. The callback is fired when this endpoint is matched by the WP_REST_Server class.
-            'callback' => 'fnugg_query_resorts',
+            'callback' => __NAMESPACE__ .'\\query_resorts',
 
         ),
     ) );
 }
  
-add_action( 'rest_api_init', 'prefix_register_product_routes' );
+add_action( 'rest_api_init', __NAMESPACE__ .'\\resort_routes' );
