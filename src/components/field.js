@@ -10,8 +10,8 @@ const Field = ({ resorts, resortValue, onChange, onClick }) => {
       <ul>
         {_.map(resorts, (resort, index) => {
           return (
-            <li onClick={() => onClick(resort._source.name)} key={index}>
-              {resort._source.name}
+            <li onClick={() => onClick(resort.name)} key={index}>
+              {resort.name}
             </li>
           );
         })}

@@ -14,9 +14,9 @@ class SelectResort extends Component {
 
   getResort(value) {
     if (value) {
-      apiFetch({ path: `/fnugg/v1/resorts?q=${value}` }).then((response) => {
-        if (response.hits.total > 0) {
-          this.setState({ resorts: response.hits.hits });
+      apiFetch({ path: `/fnugg/v1/resorts/autocomplete?q=${value}` }).then((response) => {
+        if (response.total > 0) {
+          this.setState({ resorts: response.result });
         } else {
           this.setState({ resorts: [] });
         }

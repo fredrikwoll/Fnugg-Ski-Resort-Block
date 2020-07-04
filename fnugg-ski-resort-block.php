@@ -68,6 +68,25 @@ function enqueue_style(){
  *
  * @param WP_REST_Request $request This function accepts a rest request to process data.
  */
+function query_resorts_autocomplete( $request ) {
+    // In practice this function would fetch the desired data. Here we are just making stuff up.
+    $parms = $request->get_params();
+    $endpoint = 'https://api.fnugg.no/suggest/autocomplete?q='.$parms['q'];
+
+    $response = wp_remote_get($endpoint);
+    $responseBody = wp_remote_retrieve_body( $response );
+    $result = json_decode( $responseBody );
+    
+
+    return rest_ensure_response( $result );
+
+}
+
+/**
+ * This is our callback function to return our products.
+ *
+ * @param WP_REST_Request $request This function accepts a rest request to process data.
+ */
 function query_resorts( $request ) {
     // In practice this function would fetch the desired data. Here we are just making stuff up.
     $parms = $request->get_params();
@@ -81,6 +100,7 @@ function query_resorts( $request ) {
     return rest_ensure_response( $result );
 
 }
+
  
 /**
  * This function is where we register our routes for our example endpoint.
@@ -93,6 +113,16 @@ function resort_routes() {
             'methods'  => \WP_REST_Server::READABLE,
             // Here we register our callback. The callback is fired when this endpoint is matched by the WP_REST_Server class.
             'callback' => __NAMESPACE__ .'\\query_resorts',
+
+        ),
+    ) );
+
+    register_rest_route( 'fnugg/v1', '/resorts/autocomplete', array(
+        array(
+            // By using this constant we ensure that when the WP_REST_Server changes, our readable endpoints will work as intended.
+            'methods'  => \WP_REST_Server::READABLE,
+            // Here we register our callback. The callback is fired when this endpoint is matched by the WP_REST_Server class.
+            'callback' => __NAMESPACE__ .'\\query_resorts_autocomplete',
 
         ),
     ) );
