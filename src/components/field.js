@@ -1,4 +1,6 @@
-const Field = ({ resorts, resortValue, onChange, onClick }) => {
+import { isEmpty } from "lodash";
+
+const Field = ({ resorts, resortValue, searchStatus, onChange, onClick }) => {
   return (
     <>
       <input
@@ -8,6 +10,7 @@ const Field = ({ resorts, resortValue, onChange, onClick }) => {
         onChange={onChange}
       />
       <ul>
+        {resortValue && searchStatus && isEmpty(resorts) && <li>No result</li>}
         {_.map(resorts, (resort, index) => {
           return (
             <li onClick={() => onClick(resort.name)} key={index}>

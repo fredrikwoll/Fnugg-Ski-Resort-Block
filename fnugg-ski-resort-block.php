@@ -74,9 +74,9 @@ function query_resorts_autocomplete( $request ) {
     $endpoint = 'https://api.fnugg.no/suggest/autocomplete?q='.$parms['q'];
 
     $response = wp_remote_get($endpoint);
+    
     $responseBody = wp_remote_retrieve_body( $response );
     $result = json_decode( $responseBody );
-    
 
     return rest_ensure_response( $result );
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import apiFetch from "@wordpress/api-fetch";
 
-import { isEmpty } from "lodash";
 
 import Icons from "../helpers/icons";
 
