@@ -1,6 +1,6 @@
 {
   "name": "fnugg-ski-resort-block",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adding a block to Gutenberg to list data from api.fnugg.no",
   "license": "MIT",
   "scripts": {

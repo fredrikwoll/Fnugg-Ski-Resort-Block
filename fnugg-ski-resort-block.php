@@ -3,7 +3,7 @@
  * Plugin Name: Fnugg Ski Resort Block
  * Plugin URI: https://github.com/fredrikwoll/fnugg-ski-resort-block
  * Description: Simple ski resort block that return data from Fnugg API.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Fredrik Woll
  * Author URI: https://woll.dev/
  * License: GPL-3.0-or-later
